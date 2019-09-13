@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block navitem %}
+	<a class="nav-link" href="{{url_for('logout')}}">Logout
+		<strong>{{user_email}}</strong></a>
+{% endblock %}
+
+{% block body %}
+{% if message %}
+	<div class="alert alert danger" role="alert">
+		<h4>Error Occurred</h4>
+		<p>{{error_message}}</p>
+		<br>
+		<h4>{{message}}</h4>
+	</div>
+{% else %}
+	<h4>Matching Results</h4>
+{% endif %}
+
+{% for book in book_list %}
+<ul>
+	<a href="{{url_for('detail',book_id=book.id)}}">
+		<b>{{book.title}}</b> by <b>{{book.author}}</b>
+	</a>
+</ul>
+
+{% endfor %}
+
+{% endblock %}
